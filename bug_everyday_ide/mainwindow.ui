@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>MainWindow</class>
+ <widget class="QMainWindow" name="MainWindow">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>394</width>
+    <height>261</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>MainWindow</string>
+  </property>
+  <property name="autoFillBackground">
+   <bool>true</bool>
+  </property>
+  <widget class="QWidget" name="centralWidget">
+   <widget class="QSplitter" name="splitter_2">
+    <property name="geometry">
+     <rect>
+      <x>0</x>
+      <y>0</y>
+      <width>1000</width>
+      <height>800</height>
+     </rect>
+    </property>
+    <property name="orientation">
+     <enum>Qt::Vertical</enum>
+    </property>
+    <widget class="QSplitter" name="splitter">
+     <property name="orientation">
+      <enum>Qt::Horizontal</enum>
+     </property>
+     <widget class="QTextEdit" name="textEdit"/>
+     <widget class="QTextEdit" name="textEdit_2"/>
+    </widget>
+    <widget class="QTextEdit" name="textEdit_3"/>
+   </widget>
+  </widget>
+  <widget class="QMenuBar" name="menuBar">
+   <property name="geometry">
+    <rect>
+     <x>0</x>
+     <y>0</y>
+     <width>394</width>
+     <height>17</height>
+    </rect>
+   </property>
+   <widget class="QMenu" name="menu_file">
+    <property name="title">
+     <string>文件</string>
+    </property>
+    <widget class="QMenu" name="menu">
+     <property name="title">
+      <string>新建</string>
+     </property>
+     <addaction name="separator"/>
+     <addaction name="action_n"/>
+     <addaction name="action_p"/>
+    </widget>
+    <addaction name="menu"/>
+    <addaction name="separator"/>
+    <addaction name="action_op"/>
+    <addaction name="action_save"/>
+    <addaction name="action_sava"/>
+    <addaction name="action_savas"/>
+    <addaction name="action_saval"/>
+    <addaction name="separator"/>
+    <addaction name="action_closal"/>
+   </widget>
+   <widget class="QMenu" name="menu_edit">
+    <property name="title">
+     <string>编辑</string>
+    </property>
+    <addaction name="action_redo"/>
+    <addaction name="actionreg"/>
+    <addaction name="separator"/>
+    <addaction name="actioncut"/>
+    <addaction name="actioncpy"/>
+    <addaction name="actionpst"/>
+    <addaction name="actionsal"/>
+    <addaction name="separator"/>
+    <addaction name="actionann"/>
+    <addaction name="actioncann"/>
+    <addaction name="actionind"/>
+    <addaction name="actioncind"/>
+   </widget>
+   <widget class="QMenu" name="menu_srch">
+    <property name="title">
+     <string>搜索</string>
+    </property>
+    <addaction name="actionsrh"/>
+    <addaction name="actionrep"/>
+   </widget>
+   <widget class="QMenu" name="menu_view">
+    <property name="title">
+     <string>视图</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_run">
+    <property name="title">
+     <string>运行</string>
+    </property>
+    <addaction name="actioncmp"/>
+    <addaction name="actionrun"/>
+    <addaction name="actioncpr"/>
+   </widget>
+   <widget class="QMenu" name="menu_tool">
+    <property name="title">
+     <string>工具</string>
+    </property>
+   </widget>
+   <widget class="QMenu" name="menu_wdw">
+    <property name="title">
+     <string>窗口</string>
+    </property>
+    <addaction name="actioncla"/>
+    <addaction name="separator"/>
+    <addaction name="actionfs"/>
+    <addaction name="separator"/>
+    <addaction name="actionf"/>
+    <addaction name="actionl"/>
+   </widget>
+   <widget class="QMenu" name="menu_us">
+    <property name="title">
+     <string>关于我们</string>
+    </property>
+    <addaction name="actionteam"/>
+    <addaction name="separator"/>
+    <addaction name="action_jdx"/>
+    <addaction name="action_cjh"/>
+    <addaction name="action_lh"/>
+    <addaction name="action_ssq"/>
+   </widget>
+   <addaction name="menu_file"/>
+   <addaction name="menu_edit"/>
+   <addaction name="menu_srch"/>
+   <addaction name="menu_view"/>
+   <addaction name="menu_run"/>
+   <addaction name="menu_tool"/>
+   <addaction name="menu_wdw"/>
+   <addaction name="menu_us"/>
+  </widget>
+  <widget class="QToolBar" name="mainToolBar">
+   <attribute name="toolBarArea">
+    <enum>TopToolBarArea</enum>
+   </attribute>
+   <attribute name="toolBarBreak">
+    <bool>false</bool>
+   </attribute>
+   <addaction name="action_n"/>
+   <addaction name="action_op"/>
+   <addaction name="action_save"/>
+   <addaction name="separator"/>
+   <addaction name="actioncmp"/>
+   <addaction name="actionrun"/>
+   <addaction name="separator"/>
+   <addaction name="action_close"/>
+  </widget>
+  <widget class="QStatusBar" name="statusBar"/>
+  <action name="action_op">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/resource/open.png</normaloff>:/resource/open.png</iconset>
+   </property>
+   <property name="text">
+    <string>打开</string>
+   </property>
+  </action>
+  <action name="action_save">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/resource/save.png</normaloff>:/resource/save.png</iconset>
+   </property>
+   <property name="text">
+    <string>保存</string>
+   </property>
+  </action>
+  <action name="action_sava">
+   <property name="text">
+    <string>另存为</string>
+   </property>
+  </action>
+  <action name="action_savas">
+   <property name="text">
+    <string>另存项目为</string>
+   </property>
+  </action>
+  <action name="action_saval">
+   <property name="text">
+    <string>全部保存</string>
+   </property>
+  </action>
+  <action name="action_close">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/resource/close.png</normaloff>:/resource/close.png</iconset>
+   </property>
+   <property name="text">
+    <string>关闭</string>
+   </property>
+  </action>
+  <action name="action_closal">
+   <property name="text">
+    <string>全部关闭</string>
+   </property>
+  </action>
+  <action name="action_n">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/resource/new.png</normaloff>:/resource/new.png</iconset>
+   </property>
+   <property name="text">
+    <string>新建源代码</string>
+   </property>
+  </action>
+  <action name="action_p">
+   <property name="text">
+    <string>新建项目</string>
+   </property>
+  </action>
+  <action name="action_redo">
+   <property name="text">
+    <string>重做</string>
+   </property>
+  </action>
+  <action name="actionreg">
+   <property name="text">
+    <string>恢复</string>
+   </property>
+  </action>
+  <action name="actioncut">
+   <property name="text">
+    <string>剪切</string>
+   </property>
+  </action>
+  <action name="actioncpy">
+   <property name="text">
+    <string>拷贝</string>
+   </property>
+  </action>
+  <action name="actionpst">
+   <property name="text">
+    <string>粘贴</string>
+   </property>
+  </action>
+  <action name="actionsal">
+   <property name="text">
+    <string>选择全部</string>
+   </property>
+  </action>
+  <action name="actionann">
+   <property name="text">
+    <string>注释</string>
+   </property>
+  </action>
+  <action name="actioncann">
+   <property name="text">
+    <string>取消注释</string>
+   </property>
+  </action>
+  <action name="actionind">
+   <property name="text">
+    <string>缩进</string>
+   </property>
+  </action>
+  <action name="actioncind">
+   <property name="text">
+    <string>取消缩进</string>
+   </property>
+  </action>
+  <action name="actionsrh">
+   <property name="text">
+    <string>搜索</string>
+   </property>
+  </action>
+  <action name="actionrep">
+   <property name="text">
+    <string>替换</string>
+   </property>
+  </action>
+  <action name="actioncmp">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/resource/compile.png</normaloff>:/resource/compile.png</iconset>
+   </property>
+   <property name="text">
+    <string>编译</string>
+   </property>
+  </action>
+  <action name="actionrun">
+   <property name="icon">
+    <iconset resource="res.qrc">
+     <normaloff>:/resource/run.png</normaloff>:/resource/run.png</iconset>
+   </property>
+   <property name="text">
+    <string>运行</string>
+   </property>
+  </action>
+  <action name="actioncpr">
+   <property name="text">
+    <string>编译运行</string>
+   </property>
+  </action>
+  <action name="actioncla">
+   <property name="text">
+    <string>全部关闭</string>
+   </property>
+  </action>
+  <action name="actionteam">
+   <property name="text">
+    <string>我们的小队</string>
+   </property>
+  </action>
+  <action name="actionfs">
+   <property name="text">
+    <string>全屏</string>
+   </property>
+  </action>
+  <action name="actionf">
+   <property name="text">
+    <string>后继</string>
+   </property>
+  </action>
+  <action name="actionl">
+   <property name="text">
+    <string>前驱</string>
+   </property>
+  </action>
+  <action name="action_jdx">
+   <property name="text">
+    <string>蒋东旭</string>
+   </property>
+  </action>
+  <action name="action_cjh">
+   <property name="text">
+    <string>陈家辉</string>
+   </property>
+  </action>
+  <action name="action_lh">
+   <property name="text">
+    <string>罗欢</string>
+   </property>
+  </action>
+  <action name="action_ssq">
+   <property name="text">
+    <string>孙少卿</string>
+   </property>
+  </action>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="res.qrc"/>
+ </resources>
+ <connections/>
+</ui>
