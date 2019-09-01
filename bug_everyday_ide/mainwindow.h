@@ -2,7 +2,13 @@
 #define MAINWINDOW_H
 
 #include <QMainWindow>
-
+#include<QFile>
+#include<QFileDialog>
+#include<QFileInfo>
+#include<QDebug>
+#include<QByteArray>
+#include<QTextCodec>
+#include<QMessageBox>
 namespace Ui {
 class MainWindow;
 }
@@ -14,9 +20,13 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
+    void OpenFile();  //打开文件
+    void SaveFile(int,QString);  //保存文件
 private:
     Ui::MainWindow *ui;
- private slots:
+    int isopenfile;
+    QString fpath;
+private slots:
         void on_copy();       //声明复制函数
         void select_all();     //声明全选函数函数
         void paste_it();       //声明粘贴函数
