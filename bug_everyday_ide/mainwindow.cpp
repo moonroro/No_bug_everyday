@@ -22,6 +22,11 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionedit,&QAction::triggered,this,[=](){SaveFile(isopenfile,fpath);edit_it();});
     connect(ui->action_op,&QAction::triggered,this,[=](){OpenFile();});
     connect(ui->action_save,&QAction::triggered,this,[=](){SaveFile(isopenfile,fpath);});
+    connect(ui->actionann,SIGNAL(triggered()),this,SLOT(ann_it()));   //注释函数
+    connect(ui->actioncann,SIGNAL(triggered()),this,SLOT(cann_it()));   //取消注释函数
+    connect(ui->actionind,SIGNAL(triggered()),this,SLOT(ind_it()));   //缩进函数
+    connect(ui->actioncind,SIGNAL(triggered()),this,SLOT(cind_it()));   //取消缩进函数
+
 }
 
 MainWindow::~MainWindow()
@@ -53,6 +58,25 @@ void MainWindow::redo_it()
 void MainWindow::reg_it()
 {
     ui->textEdit_2->undo();
+}
+void MainWindow::ann_it()     //添加注释的功能
+{
+    QString text="/*\n */ ";
+    ui->textEdit_2->textCursor().insertText(text);
+}
+void MainWindow::cann_it()    //取消注释
+{
+
+}
+void MainWindow::ind_it()     //添加缩进的功能
+{
+    ui->textEdit_2 =  new QTextEdit(this);
+    QTextCursor cursor = ui->textEdit_2->textCursor();
+
+}
+void MainWindow::cind_it()   //取消缩进
+{
+
 }
 
 QString MainWindow::OpenFile()

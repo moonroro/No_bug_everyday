@@ -8,6 +8,7 @@
 #include<QDebug>
 #include<QByteArray>
 #include<QTextCodec>
+
 namespace Ui {
 class MainWindow;
 }
@@ -34,6 +35,10 @@ private slots:
         void reg_it();          //声明恢复函数
         void edit_it();      //编译
         void run_it();      //运行
+        void ann_it();      //声明添加注释函数
+        void cann_it();     //声明取消注释函数
+        void ind_it();      //声明缩进函数
+        void cind_it();      //声明取消缩进函数
 };
 
 #endif // MAINWINDOW_H
