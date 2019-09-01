@@ -109,7 +109,7 @@
     <property name="title">
      <string>运行</string>
     </property>
-    <addaction name="actioncmp"/>
+    <addaction name="actionedit"/>
     <addaction name="actionrun"/>
     <addaction name="actioncpr"/>
    </widget>
@@ -160,7 +160,7 @@
    <addaction name="action_op"/>
    <addaction name="action_save"/>
    <addaction name="separator"/>
-   <addaction name="actioncmp"/>
+   <addaction name="actionedit"/>
    <addaction name="actionrun"/>
    <addaction name="separator"/>
    <addaction name="action_close"/>
@@ -287,7 +287,7 @@
     <string>替换</string>
    </property>
   </action>
-  <action name="actioncmp">
+  <action name="actionedit">
    <property name="icon">
     <iconset resource="res.qrc">
      <normaloff>:/resource/compile.png</normaloff>:/resource/compile.png</iconset>
