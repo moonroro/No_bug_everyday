@@ -18,6 +18,8 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionsal,SIGNAL(triggered()),this,SLOT(select_all()));
     connect(ui->action_redo,SIGNAL(triggered()),this,SLOT(redo_it()));
     connect(ui->actionreg,SIGNAL(triggered()),this,SLOT(reg_it()));
+    connect(ui->actionrun,&QAction::triggered,this,[=](){SaveFile(isopenfile,fpath);edit_it();run_it();});
+    connect(ui->actionedit,&QAction::triggered,this,[=](){SaveFile(isopenfile,fpath);edit_it();});
     connect(ui->action_op,&QAction::triggered,this,[=](){OpenFile();});
     connect(ui->action_save,&QAction::triggered,this,[=](){SaveFile(isopenfile,fpath);});
 }
@@ -53,43 +55,47 @@ void MainWindow::reg_it()
     ui->textEdit_2->undo();
 }
 
-//打开文件函数
-void MainWindow::OpenFile()
+QString MainWindow::OpenFile()
 {
-    QString path=QFileDialog::getOpenFileName(this, tr("打开文件"),
-                                              "C:\\Users\\Administrator\\Documents\\QT\\QTPublic_Compile",
-                                              tr("Text or C files (*.txt *.c *.cpp)"));   //选择文件，存入文件路径
-    fpath = path;           //类成员存储文件路径
-    QTextCodec *codec = QTextCodec::codecForName("UTF-8");   //文件编码方式
-    QFile file(path);     //生成QFile类文件
-    file.open(QIODevice::ReadWrite);   //以只读方式打开
-    QByteArray array = file.readAll();  //读写文件信息存入QByteArray类
-    ui->textEdit_2->setText(codec->toUnicode(array));  //在编辑窗口显示
-    isopenfile=1;  //文件是否成功打开变量
-    file.close();  //关闭文件
+    QString path=QFileDialog::getOpenFileName(this,"打开文件","E:\\QTPublic_Compile");
+    fpath = path;
+    QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+    QFile file(path);
+    file.open(QIODevice::ReadWrite);
+    QByteArray array = file.readAll();
+    ui->textEdit_2->setText(codec->toUnicode(array));
+    isopenfile=1;
+    file.close();
     qDebug() << path;
+    return path;
 }
 
-//关闭文件函数
-void MainWindow::SaveFile(int isopenfile,QString fpath)   //关闭文件函数
+void MainWindow::SaveFile(int isopenfile,QString path)
 {
-    //判断文件是否打开，若未打开文件，错误警告
     if(!isopenfile)
     {
-        QMessageBox::critical(this,"错误","尚未打开任何文件");
         qDebug()<<"there is not any file being opened!";
         return;
     }
-    qDebug() << fpath;
-    //存入打开的文件
+    qDebug() << path;
     QFile file;
-    file.setFileName(fpath);
-    //只读方式打开
+    file.setFileName(path);
     file.open(QIODevice::WriteOnly);
-    //读取编辑区文字
     QString str=ui->textEdit_2->toPlainText();
-    //以UTF-8编码方式写入文件
     file.write(str.toUtf8());
     qDebug()<<"writing succeed!";
-    file.close(); //关闭文件
+    file.close();
+}
+void MainWindow::edit_it()
+{
+    QString destname = fpath;
+    destname.replace(".c",".exe");
+    QString command = "gcc -o " + destname +" "+ fpath;
+    system(command.toStdString().data());
+}
+void MainWindow::run_it()
+{
+    QString destname = fpath;
+    destname.replace(".c",".exe");
+    system(destname.toStdString().data());
 }

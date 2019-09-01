@@ -8,7 +8,6 @@
 #include<QDebug>
 #include<QByteArray>
 #include<QTextCodec>
-#include<QMessageBox>
 namespace Ui {
 class MainWindow;
 }
@@ -20,7 +19,7 @@ class MainWindow : public QMainWindow
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
-    void OpenFile();  //打开文件
+    QString OpenFile();  //打开文件
     void SaveFile(int,QString);  //保存文件
 private:
     Ui::MainWindow *ui;
@@ -33,6 +32,8 @@ private slots:
         void cut_it();           //声明剪切函数
         void redo_it();         //声明重做函数
         void reg_it();          //声明恢复函数
+        void edit_it();      //编译
+        void run_it();      //运行
 };
 
 #endif // MAINWINDOW_H
