@@ -12,8 +12,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->splitter_2->setStretchFactor(1,1);          //设置splitter的两个框的比例为 ,0表示右（上），1表示左（下） 右边表示1:7
     filenum=0;
     cus=1;
-
-    InitFileList();
     /*以下部分是函数信号槽*/
     connect(ui->actioncpy,SIGNAL(triggered()),this,SLOT(on_copy()));        //复制
     connect(ui->actioncut,SIGNAL(triggered()),this,SLOT(cut_it()));             //剪切

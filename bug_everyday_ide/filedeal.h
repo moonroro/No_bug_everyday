@@ -13,7 +13,7 @@ void MainWindow::OpenFile()
     }
     myfile[cus].no = cus;
     myfile[cus].Path = path;           //类成员存储文件路径
-    QTextCodec *codec = QTextCodec::codecForName("gbk");   //文件编码方式
+    QTextCodec *codec = QTextCodec::codecForName("UTF-8");   //文件编码方式
     myfile[cus].File=new QFile(path); //生成QFile类文件
     myfile[cus].Info=new QFileInfo(path);
     myfile[cus].File->open(QIODevice::ReadWrite);   //以只读方式打开
@@ -25,21 +25,21 @@ void MainWindow::OpenFile()
     cus++;
 }
 //保存文件函数
-void MainWindow::SaveFile(int cusfile)
+void MainWindow::SaveFile(int currentfile)
 {
     //判断文件是否打开，若未打开文件，错误警告
-    if(cusfile==0)
+    if(currentfile==0)
     {
         Save_asFile();
         qDebug()<<"there is not any file being opened!";
         return;
     }
     QFile file;
-    file.setFileName(myfile[cusfile].Path); //存入打开的文件
+    file.setFileName(myfile[currentfile].Path); //存入打开的文件
     file.open(QIODevice::WriteOnly); //只读方式打开
     QString str=ui->textEdit_2->toPlainText(); //读取编辑区文字
     file.write(str.toUtf8()); //以UTF-8编码方式写入文件
-    qDebug()<<"writing succeed!";
+    qDebug()<<"save succeed!";
     file.close(); //关闭文件
 }
 void MainWindow::Save_asFile()   //另存为文件函数
@@ -57,20 +57,24 @@ void MainWindow::Save_asFile()   //另存为文件函数
     qDebug()<<"另存为文件成功";
     file.close(); //关闭文件
 }
-//初始化文件窗口树
-void MainWindow::InitFileList(){
-    ui->treeWidget->setHeaderHidden(true);
-    FileList = new QTreeWidgetItem(QStringList()<<"文件列表");
-    ui->treeWidget->addTopLevelItem(FileList);
-}
+//增加文件至窗口树
 void MainWindow::addFileList(MyFile File){
-    QTreeWidgetItem *newfile=new QTreeWidgetItem(ui->treeWidget);
+    QTreeWidgetItem *newfile=new QTreeWidgetItem();
+    newfile->setText(0,File.Info->fileName());
+    newfile->setText(1,File.Path);
+    newfile->setText(2,QString::number(File.no));
     qDebug() << File.no <<File.Info->fileName();
-    newfile->setText(File.no,File.Info->fileName());
-    newfile->setFlags(Qt::ItemIsUserCheckable|Qt::ItemIsEnabled|Qt::ItemIsSelectable);
-    FileList->addChild(newfile);
+    ui->treeWidget->addTopLevelItem(newfile);
 }
 void MainWindow::TreeWidgetClick(QTreeWidgetItem *item,int column){
-    qDebug() << column;
+    qDebug() << item->text(0) << item->text(1);
+    if(item->text(1)==""){return;}
+    QFile CurrentFile(item->text(1));
+    currentfile=item->text(2).toInt();
+    CurrentFile.open(QIODevice::ReadWrite);
+    QByteArray array= CurrentFile.readAll();
+    QTextCodec *codec = QTextCodec::codecForName("UTF-8");   //文件编码方式
+    ui->textEdit_2->setText(codec->toUnicode(array));
+    CurrentFile.close();
 }
 #endif // FILEDEAL_H
