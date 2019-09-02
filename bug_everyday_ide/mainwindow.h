@@ -22,17 +22,14 @@ public:
     void Save_asFile(); //另存为文件
     void InitFileList(); //初始化文件列表
     void addFileList(MyFile); //添加文件列表
-    void f();
 public slots:
     void TreeWidgetClick(QTreeWidgetItem *item,int column);
 private:
     Ui::MainWindow *ui;
-    QTreeWidgetItem * FileList;
-    bool isopenfile;
-    bool issavefile;
-    MyFile myfile[11];
-    int filenum;
-    int cus;
+    MyFile myfile[11];  //我的文件类，包含文件各种信息,具体定义在头文件
+    int filenum;       //文件总数
+    int cus;           //记录文件编号
+    int currentfile;   //当前打开文件编号
 private slots:
         void on_copy();       //声明复制函数
         void select_all();     //声明全选函数函数
