@@ -12,8 +12,6 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->splitter_2->setStretchFactor(1,1);          //设置splitter的两个框的比例为 ,0表示右（上），1表示左（下） 右边表示1:7
     filenum=0;
     cus=1;
-
-    InitFileList();
     /*以下部分是函数信号槽*/
     connect(ui->actioncpy,SIGNAL(triggered()),this,SLOT(on_copy()));        //复制
     connect(ui->actioncut,SIGNAL(triggered()),this,SLOT(cut_it()));             //剪切
@@ -30,6 +28,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actioncann,SIGNAL(triggered()),this,SLOT(cann_it()));   //取消注释函数
     connect(ui->actionind,SIGNAL(triggered()),this,SLOT(ind_it()));   //缩进函数
     connect(ui->actioncind,SIGNAL(triggered()),this,SLOT(cind_it()));   //取消缩进函数
+    connect(ui->actionfs,SIGNAL(triggered()),this,SLOT(full_screen()));    //全屏信号槽
     connect(ui->treeWidget,SIGNAL(itemClicked(QTreeWidgetItem*,int)),this,SLOT(TreeWidgetClick(QTreeWidgetItem *,int)));
 }
 
@@ -38,18 +37,39 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+void MainWindow::sleep(unsigned int tim)        //延时函数
+{
+       QTime reachtime = QTime::currentTime().addMSecs(tim);        //获取当前时间加上你需要延时的时间
+       while(QTime::currentTime()<reachtime)
+       {
+           QCoreApplication::processEvents(QEventLoop::AllEvents,100);   // 最小循环时间是0.1秒
+       }
+}
+
+ void   MainWindow:: keyPressEvent(QKeyEvent *event)  //实现一些键盘操作
+    {
+        if(event->key()==Qt::Key_Escape&&Fullsize)
+        {
+            Fullsize = false;
+            showNormal();
+             ui->statusBar->showMessage(" ");   //清空状态栏中的信息
+        }
+    }
 
 void MainWindow::on_copy()          //调用Qt中自带的拷贝函数
 {
     ui->textEdit_2->copy();
+    ui->statusBar->showMessage(tr("    拷贝成功"),1500);        //在状态栏中显示信息，时间为1.5秒
 }
 void MainWindow::select_all()       //调用Qt中自带的全选函数
 {
     ui->textEdit_2->selectAll();
+    ui->statusBar->showMessage(tr("    已经全部选择"),1500);
 }
 void MainWindow::cut_it()              //调用Qt中自带的剪切函数
 {
     ui->textEdit_2->cut();
+    ui->statusBar->showMessage(tr("    剪切成功"),1500);
 }
 void MainWindow::paste_it()         //调用Qt中自带的粘贴函数
 {
@@ -58,10 +78,21 @@ void MainWindow::paste_it()         //调用Qt中自带的粘贴函数
 void MainWindow::redo_it()          //调用Qt中自带的重做函数
 {
     ui->textEdit_2->redo();
+    ui->statusBar->showMessage(tr("    成功还原上一步操作"),1500);
 }
 void MainWindow::reg_it()           //调用Qt中自带的恢复函数
 {
     ui->textEdit_2->undo();
+    ui->statusBar->showMessage(tr("    已经回到后一步操作"),1500);
+}
+
+void MainWindow::full_screen()
+{
+    showFullScreen();
+    Fullsize = true;
+    ui->statusBar->showMessage(tr("    已成功进入全屏模式"),1500);
+    sleep(1500);
+    ui->statusBar->showMessage(tr("    按下ESC按键退出全屏"));
 }
 //void MainWindow::edit_it()      //编译
 //{

@@ -5,7 +5,10 @@
 #include <QDebug>
 #include <QMessageBox>
 #include <QTreeWidgetItem>
-#include <myfile.h>
+#include<QKeyEvent>
+#include<QTime>
+#include<QApplication>
+#include "myfile.h"
 namespace Ui {
 class MainWindow;
 }
@@ -22,17 +25,20 @@ public:
     void Save_asFile(); //另存为文件
     void InitFileList(); //初始化文件列表
     void addFileList(MyFile); //添加文件列表
-    void f();
+    void keyPressEvent(QKeyEvent * event);  //获取键盘按键函数
+    void sleep(unsigned int);   //延时运行函数
+    bool Fullsize = false;   //用于记录是否处于全屏模式
+
 public slots:
     void TreeWidgetClick(QTreeWidgetItem *item,int column);
+
 private:
     Ui::MainWindow *ui;
-    QTreeWidgetItem * FileList;
-    bool isopenfile;
-    bool issavefile;
-    MyFile myfile[11];
-    int filenum;
-    int cus;
+    MyFile myfile[11];  //我的文件类，包含文件各种信息,具体定义在头文件
+    int filenum;       //文件总数
+    int cus;           //记录文件编号
+    int currentfile;   //当前打开文件编号
+
 private slots:
         void on_copy();       //声明复制函数
         void select_all();     //声明全选函数函数
@@ -46,6 +52,7 @@ private slots:
         void cann_it();     //声明取消注释函数
         void ind_it();      //声明缩进函数
         void cind_it();      //声明取消缩进函数
+        void full_screen(); //声明全屏函数
 };
 
 #endif // MAINWINDOW_H
