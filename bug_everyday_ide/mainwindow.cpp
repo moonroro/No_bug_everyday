@@ -9,6 +9,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui->splitter->setStretchFactor(1,7);
     ui->splitter_2->setStretchFactor(0,6);
     ui->splitter_2->setStretchFactor(1,2);
+    isopenfile=0;
 
     /*以下部分是函数信号槽*/
     connect(ui->actioncpy,SIGNAL(triggered()),this,SLOT(on_copy()));
@@ -17,7 +18,22 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->actionsal,SIGNAL(triggered()),this,SLOT(select_all()));
     connect(ui->action_redo,SIGNAL(triggered()),this,SLOT(redo_it()));
     connect(ui->actionreg,SIGNAL(triggered()),this,SLOT(reg_it()));
+    connect(ui->actionrun,&QAction::triggered,this,[=](){SaveFile(isopenfile,fpath);edit_it();run_it();});
+    connect(ui->actionedit,&QAction::triggered,this,[=](){SaveFile(isopenfile,fpath);edit_it();});
+    connect(ui->action_op,&QAction::triggered,this,[=](){OpenFile();});
+    connect(ui->action_save,&QAction::triggered,this,[=](){SaveFile(isopenfile,fpath);});
+    connect(ui->actionann,SIGNAL(triggered()),this,SLOT(ann_it()));   //注释函数
+    connect(ui->actioncann,SIGNAL(triggered()),this,SLOT(cann_it()));   //取消注释函数
+    connect(ui->actionind,SIGNAL(triggered()),this,SLOT(ind_it()));   //缩进函数
+    connect(ui->actioncind,SIGNAL(triggered()),this,SLOT(cind_it()));   //取消缩进函数
+
 }
+
+MainWindow::~MainWindow()
+{
+    delete ui;
+}
+
 
 void MainWindow::on_copy()          //以下调用Qt中自带的拷贝、剪切、粘贴等函数
 {
@@ -43,9 +59,67 @@ void MainWindow::reg_it()
 {
     ui->textEdit_2->undo();
 }
-
-
-MainWindow::~MainWindow()
+void MainWindow::ann_it()     //添加注释的功能
 {
-    delete ui;
+    QString text="/*\n */ ";
+    ui->textEdit_2->textCursor().insertText(text);
+}
+void MainWindow::cann_it()    //取消注释
+{
+
+}
+void MainWindow::ind_it()     //添加缩进的功能
+{
+    ui->textEdit_2 =  new QTextEdit(this);
+    QTextCursor cursor = ui->textEdit_2->textCursor();
+
+}
+void MainWindow::cind_it()   //取消缩进
+{
+
+}
+
+QString MainWindow::OpenFile()
+{
+    QString path=QFileDialog::getOpenFileName(this,"打开文件","E:\\QTPublic_Compile");
+    fpath = path;
+    QTextCodec *codec = QTextCodec::codecForName("UTF-8");
+    QFile file(path);
+    file.open(QIODevice::ReadWrite);
+    QByteArray array = file.readAll();
+    ui->textEdit_2->setText(codec->toUnicode(array));
+    isopenfile=1;
+    file.close();
+    qDebug() << path;
+    return path;
+}
+
+void MainWindow::SaveFile(int isopenfile,QString path)
+{
+    if(!isopenfile)
+    {
+        qDebug()<<"there is not any file being opened!";
+        return;
+    }
+    qDebug() << path;
+    QFile file;
+    file.setFileName(path);
+    file.open(QIODevice::WriteOnly);
+    QString str=ui->textEdit_2->toPlainText();
+    file.write(str.toUtf8());
+    qDebug()<<"writing succeed!";
+    file.close();
+}
+void MainWindow::edit_it()
+{
+    QString destname = fpath;
+    destname.replace(".c",".exe");
+    QString command = "gcc -o " + destname +" "+ fpath;
+    system(command.toStdString().data());
+}
+void MainWindow::run_it()
+{
+    QString destname = fpath;
+    destname.replace(".c",".exe");
+    system(destname.toStdString().data());
 }
