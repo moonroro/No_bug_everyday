@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>751</width>
-    <height>486</height>
+    <width>887</width>
+    <height>878</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -17,41 +17,37 @@
    <bool>true</bool>
   </property>
   <widget class="QWidget" name="centralWidget">
-   <widget class="QSplitter" name="splitter_2">
-    <property name="geometry">
-     <rect>
-      <x>0</x>
-      <y>0</y>
-      <width>1000</width>
-      <height>800</height>
-     </rect>
-    </property>
-    <property name="orientation">
-     <enum>Qt::Vertical</enum>
-    </property>
-    <widget class="QSplitter" name="splitter">
-     <property name="orientation">
-      <enum>Qt::Horizontal</enum>
-     </property>
-     <widget class="QTreeWidget" name="treeWidget">
-      <column>
-       <property name="text">
-        <string notr="true">1</string>
+   <layout class="QGridLayout" name="gridLayout">
+    <item row="0" column="0">
+     <widget class="QSplitter" name="splitter_2">
+      <property name="orientation">
+       <enum>Qt::Vertical</enum>
+      </property>
+      <widget class="QSplitter" name="splitter">
+       <property name="orientation">
+        <enum>Qt::Horizontal</enum>
        </property>
-      </column>
+       <widget class="QTreeWidget" name="treeWidget">
+        <column>
+         <property name="text">
+          <string notr="true">1</string>
+         </property>
+        </column>
+       </widget>
+       <widget class="QTextEdit" name="textEdit_2"/>
+      </widget>
+      <widget class="QTextEdit" name="textEdit_3"/>
      </widget>
-     <widget class="QTextEdit" name="textEdit_2"/>
-    </widget>
-    <widget class="QTextEdit" name="textEdit_3"/>
-   </widget>
+    </item>
+   </layout>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>751</width>
-     <height>23</height>
+     <width>887</width>
+     <height>17</height>
     </rect>
    </property>
    <widget class="QMenu" name="menu_file">
@@ -109,7 +105,7 @@
     <property name="title">
      <string>运行</string>
     </property>
-    <addaction name="actionedit"/>
+    <addaction name="actioncmp"/>
     <addaction name="actionrun"/>
     <addaction name="actioncpr"/>
    </widget>
@@ -160,7 +156,7 @@
    <addaction name="action_op"/>
    <addaction name="action_save"/>
    <addaction name="separator"/>
-   <addaction name="actionedit"/>
+   <addaction name="actioncmp"/>
    <addaction name="actionrun"/>
    <addaction name="separator"/>
    <addaction name="action_close"/>
@@ -287,7 +283,7 @@
     <string>替换</string>
    </property>
   </action>
-  <action name="actionedit">
+  <action name="actioncmp">
    <property name="icon">
     <iconset resource="res.qrc">
      <normaloff>:/resource/compile.png</normaloff>:/resource/compile.png</iconset>

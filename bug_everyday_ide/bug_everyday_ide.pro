@@ -3,6 +3,7 @@
 #-------------------------------------------------
 
 QT       += core gui
+
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
 TARGET = bug_everyday_ide
@@ -25,7 +26,9 @@ SOURCES += \
         mainwindow.cpp
 
 HEADERS += \
-        mainwindow.h
+        mainwindow.h \
+    filedeal.h \
+    myfile.h
 
 FORMS += \
         mainwindow.ui
@@ -34,10 +37,3 @@ DISTFILES +=
 
 RESOURCES += \
     res.qrc
-
-win32:CONFIG(release, debug|release): LIBS += -L$$PWD/QScintilla_gpl-2.11.2/build-qscintilla-Desktop_Qt_5_13_0_MinGW_64_bit-Debug/release/ -lqscintilla2_qt5d
-else:win32:CONFIG(debug, debug|release): LIBS += -L$$PWD/QScintilla_gpl-2.11.2/build-qscintilla-Desktop_Qt_5_13_0_MinGW_64_bit-Debug/debug/ -lqscintilla2_qt5d
-else:unix: LIBS += -L$$PWD/QScintilla_gpl-2.11.2/build-qscintilla-Desktop_Qt_5_13_0_MinGW_64_bit-Debug/ -lqscintilla2_qt5d
-
-INCLUDEPATH += $$PWD/''
-DEPENDPATH += $$PWD/''
