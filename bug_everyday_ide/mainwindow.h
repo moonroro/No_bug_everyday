@@ -9,6 +9,8 @@
 #include<QTime>
 #include<QApplication>
 #include "myfile.h"
+#include "find_dialog.h" //查找类
+
 namespace Ui {
 class MainWindow;
 }
@@ -53,6 +55,8 @@ private slots:
         void ind_it();      //声明缩进函数
         void cind_it();      //声明取消缩进函数
         void full_screen(); //声明全屏函数
+        void search_show();      //声明搜索窗口函数
+        void search(find_dialog *find_dlg);      //声明搜索函数
 };
 
 #endif // MAINWINDOW_H

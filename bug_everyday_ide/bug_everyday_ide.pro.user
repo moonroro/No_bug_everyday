@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE QtCreatorProject>
-<!-- Written by QtCreator 4.5.1, 2019-09-06T22:55:42. -->
+<!-- Written by QtCreator 4.5.1, 2019-09-07T20:28:10. -->
 <qtcreator>
  <data>
   <variable>EnvironmentId</variable>
@@ -529,8 +529,8 @@
     <value type="int" key="PE.EnvironmentAspect.Base">2</value>
     <valuelist type="QVariantList" key="PE.EnvironmentAspect.Changes"/>
     <value type="QString" key="ProjectExplorer.ProjectConfiguration.DefaultDisplayName">bug_everyday_ide</value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName"></value>
-    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/moon/Desktop/bug_everyday_ide/No_bug_everyday/bug_everyday_ide/bug_everyday_ide.pro</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.DisplayName">bug_everyday_ide2</value>
+    <value type="QString" key="ProjectExplorer.ProjectConfiguration.Id">Qt4ProjectManager.Qt4RunConfiguration:C:/Users/moon/Desktop/bug_everyday_ide/No_bug_everyday/No_bug_everyday/bug_everyday_ide/bug_everyday_ide.pro</value>
     <value type="bool" key="QmakeProjectManager.QmakeRunConfiguration.UseLibrarySearchPath">true</value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.CommandLineArguments"></value>
     <value type="QString" key="Qt4ProjectManager.Qt4RunConfiguration.ProFile">bug_everyday_ide.pro</value>
